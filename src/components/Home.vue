@@ -3,7 +3,7 @@
     <h1>Hello, {{ name }} Welcome on home Page</h1>
     <table>
         <caption>Momo Resturant List</caption>
-        <tr>
+        <tr tabindex="0">
             <th>Id</th>
             <th>Name</th>
             <th>Address</th>
@@ -13,10 +13,10 @@
         <tr v-for="item in resturants" :key="item.id">
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
-            <td>{{ item.address }}</td>
+            <td>{{ item.address }}</gtd>
             <td>{{ item.contact }}</td>
-            <td><router-link :to="'/update/'+item.id">Update</router-link>
-                <button v-on:click="deleteResturant(item.id)">Delete</button>
+            <td><router-link  tabindex="-1" :to="'/update/'+item.id">Update</router-link>
+                <button  tabindex="-1" v-on:click="deleteResturant(item.id)">Delete</button>
             </td>
         </tr>
     </table>
