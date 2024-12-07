@@ -17,6 +17,11 @@ pnpm install
 pnpm run serve
 ```
 
+### for backend here uses json-server for API
+```
+npx json-server db.json
+```
+
 ### Compiles and minifies for production
 ```
 pnpm run build
