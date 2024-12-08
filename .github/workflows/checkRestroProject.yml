@@ -16,15 +16,6 @@ jobs:
       - name: Checkout repo code
         uses: actions/checkout@v3
 
-      - name: pnpm install
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      # - name: nvm install
-      #   shell: bash -l {0}
-      #   run: nvm install 18.17.1
-
       - name: set up node
         uses: actions/setup-node@v3
         with:
@@ -34,8 +25,7 @@ jobs:
         run: |
           npm install
           npm run serve &
-          npm install -g json-server
-          json-server db.json &
+          npx json-server db.json &
 
       - name: wait for services
         run: |

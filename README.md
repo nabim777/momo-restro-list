@@ -9,17 +9,17 @@
 
 ## Project setup
 ```
-pnpm install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-pnpm run serve
+npm run serve
 ```
 
 ### for backend here uses json-server for API
 ```
-npx json-server db.json
+json-server db.json
 ```
 
 ### Compiles and minifies for production
