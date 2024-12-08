@@ -19,6 +19,7 @@ npm run serve
 
 ### for backend here uses json-server for API
 ```
+npm install -g json-server
 json-server db.json
 ```
 

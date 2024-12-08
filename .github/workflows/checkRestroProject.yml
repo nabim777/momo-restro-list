@@ -25,7 +25,8 @@ jobs:
         run: |
           npm install
           npm run serve &
-          npx json-server db.json &
+          npm install -g json-server
+          json-server db.json &
 
       - name: wait for services
         run: |
