@@ -1,9 +1,9 @@
 {
   "user": [
     {
-      "name": "Nabina",
-      "email": "nabinaale@gmail.com",
-      "password": "@123",
+      "name": "ben",
+      "email": "ben@gmail.com",
+      "password": "ben",
       "id": 1
     },
     {
@@ -11,6 +11,12 @@
       "email": "max",
       "password": "max",
       "id": 2
+    },
+    {
+      "id": "1736",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin"
     }
   ],
   "resturant": [
