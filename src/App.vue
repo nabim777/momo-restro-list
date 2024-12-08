@@ -52,4 +52,10 @@ body{
     background-color: rgb(15, 157, 201);
     cursor: pointer;
 }
+
+.error-message {
+    color: red;
+    margin-top: -19px;
+    font-size: 14px;
+}
 </style>
