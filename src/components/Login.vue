@@ -69,7 +69,6 @@ export default{
             }
             else{
                 this.errorMessage = "Invalid email or password. Please try again."
-                return;
             }
         }  
     },
