@@ -43,6 +43,7 @@ body{
     width: 320px;
     height: 40px;
     border: 1px solid skyblue;
+    margin-right: 21px;
     color: #fff;
     background-color: skyblue;
     transition: border-color 0.3s, background-color 0.3s, color 0.3s;
