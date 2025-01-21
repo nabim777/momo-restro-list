@@ -33,5 +33,10 @@ pnpm run build
 pnpm run lint
 ```
 
+### Run e2e test
+```
+npm run test:e2e tests
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
