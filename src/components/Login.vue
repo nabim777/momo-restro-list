@@ -55,8 +55,8 @@ export default{
             // this is api for filtering the required username with email and password
             let result = await axios.get(`http://localhost:3000/user`, {
                     params: {
-                        name: this.identifier,
-                        email: this.identifier,
+                        name: this.name,
+                        email: this.email,
                         password: this.password
                     }
                 });
