@@ -20,10 +20,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+      
+      - name: Install NPM Dependencies
+        run: npm install
+
+      - name: JS lint
+        run: |
+          npm run lint || (echo "Linting failed! Please run 'npm run lint:fix' to fix the errors." && exit 1)
 
       - name: Build and run the project
         run: |
-          npm install
           npm run serve &
           npm install -g json-server
           json-server db.json &

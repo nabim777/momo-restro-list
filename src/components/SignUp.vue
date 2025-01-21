@@ -1,18 +1,37 @@
 <template>
-    <div>
-        <img src="../assets/restrologo.png" class="logo" alt="cooker" />
-        <h3>Sign Up</h3>
-        <div class="register">
-            <input type="text" v-model="name" placeholder="Enter Name">
-            <input type="text" v-model="email" placeholder="Enter Email">
-            <input type="password" v-model="password" placeholder="Password">
-            <button v-on:click="signUp">Sign up</button>
-            <p>
-                <router-link to="/login">Login</router-link>
-            </p>
-        </div>
+  <div>
+    <img
+      src="../assets/restrologo.png"
+      class="logo"
+      alt="cooker"
+    >
+    <h3>Sign Up</h3>
+    <div class="register">
+      <input
+        v-model="name"
+        type="text"
+        placeholder="Enter Name"
+      >
+      <input
+        v-model="email"
+        type="text"
+        placeholder="Enter Email"
+      >
+      <input
+        v-model="password"
+        type="password"
+        placeholder="Password"
+      >
+      <button @click="signUp">
+        Sign up
+      </button>
+      <p>
+        <router-link to="/login">
+          Login
+        </router-link>
+      </p>
     </div>
-
+  </div>
 </template>
 
 <script>
@@ -26,6 +45,15 @@ export default{
             name: '',
             email: '',
             password: ''
+        }
+    },
+    //mounted will load whenever page is loaded
+    mounted(){
+        //this will get the value from loaclstorage named user-info
+        let user = localStorage.getItem('user-info');
+        //if user is login then redirect homepage
+        if (user){
+            this.$router.push({name:'Home'})
         }
     },
     methods:{
@@ -48,15 +76,6 @@ export default{
                 //this will navigate to home.vue
                 this.$router.push({name:'Home'})
             }
-        }
-    },
-    //mounted will load whenever page is loaded
-    mounted(){
-        //this will get the value from loaclstorage named user-info
-        let user = localStorage.getItem('user-info');
-        //if user is login then redirect homepage
-        if (user){
-            this.$router.push({name:'Home'})
         }
     }
 }

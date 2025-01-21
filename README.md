@@ -25,12 +25,16 @@ json-server db.json
 
 ### Compiles and minifies for production
 ```
-pnpm run build
+npm run build
 ```
 
 ### Lints and fixes files
 ```
-pnpm run lint
+npm run lint
+```
+
+```
+npm run lint:fix
 ```
 
 ### Run e2e test

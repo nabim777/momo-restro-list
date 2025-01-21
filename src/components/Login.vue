@@ -1,25 +1,61 @@
 <template>
- <div>
-        <img src="../assets/restrologo.png" class="logo" alt="resturant" />
-        <h3>Login</h3>
-        <div class="login">
-            <input type="text" v-model="email" id="email" placeholder="Enter Name or email">
-            <p v-if="emailError" class="error-message">{{ emailError }}</p>
-            <input type="password" v-model="password" id="password" placeholder="Password">
-            <p v-if="passwordError" class="error-message">{{ passwordError }}</p>
-            <p v-if="errorMessage && !emailError && !passwordError" class="error-message">{{ errorMessage }}</p>
-            <button type="submit" v-on:click="login">Login</button>
-            <p>
-                <router-link to="/Sign-Up">Sign Up</router-link>
-            </p>
-        </div>
+  <div>
+    <img
+      src="../assets/restrologo.png"
+      class="logo"
+      alt="resturant"
+    >
+    <h3>Login</h3>
+    <div class="login">
+      <input
+        id="email"
+        v-model="email"
+        type="text"
+        placeholder="Enter Name or email"
+      >
+      <p
+        v-if="emailError"
+        class="error-message"
+      >
+        {{ emailError }}
+      </p>
+      <input
+        id="password"
+        v-model="password"
+        type="password"
+        placeholder="Password"
+      >
+      <p
+        v-if="passwordError"
+        class="error-message"
+      >
+        {{ passwordError }}
+      </p>
+      <p
+        v-if="errorMessage && !emailError && !passwordError"
+        class="error-message"
+      >
+        {{ errorMessage }}
+      </p>
+      <button
+        type="submit"
+        @click="login"
+      >
+        Login
+      </button>
+      <p>
+        <router-link to="/Sign-Up">
+          Sign Up
+        </router-link>
+      </p>
     </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
 export default{
-    name : 'login',
+    name : 'Login',
     data(){
         return {
             email: '',
@@ -28,6 +64,16 @@ export default{
             passwordError: '',
             errorMessage: ''
         } 
+    },
+        //mounted will load whenever page is loaded
+        //this will check the value in application storage if there is user it will redirect to the home page
+    mounted(){
+        //this will get the value from loaclstorage named user-info
+        let user = localStorage.getItem('user-info');
+        //if user is login then redirect homepage
+        if (user){
+            this.$router.push({name:'Home'})
+        }
     },
     methods:{
         async login()
@@ -72,16 +118,6 @@ export default{
                 this.errorMessage = "Invalid email or password. Please try again."
             }
         }  
-    },
-        //mounted will load whenever page is loaded
-        //this will check the value in application storage if there is user it will redirect to the home page
-    mounted(){
-        //this will get the value from loaclstorage named user-info
-        let user = localStorage.getItem('user-info');
-        //if user is login then redirect homepage
-        if (user){
-            this.$router.push({name:'Home'})
-        }
     }
 }
 </script>

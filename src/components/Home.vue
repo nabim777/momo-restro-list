@@ -1,29 +1,39 @@
 <template>
-    <Header></Header>
+  <div>
+    <Header />
     <h1>Hello, {{ name }} Welcome on home Page</h1>
     <table>
-        <caption>Momo Resturant List</caption>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Contact</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="item in resturants" :key="item.id">
-                <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.address }}</td>
-                <td>{{ item.contact }}</td>
-                <td><router-link :to="'/update/'+item.id">Update</router-link>
-                    <button v-on:click="deleteResturant(item.id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
+      <caption>Momo Resturant List</caption>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Contact</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="item in resturants"
+          :key="item.id"
+        >
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.address }}</td>
+          <td>{{ item.contact }}</td>
+          <td>
+            <router-link :to="'/update/'+item.id">
+              Update
+            </router-link>
+            <button @click="deleteResturant(item.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 </template>
 
 <script>
@@ -42,6 +52,17 @@ export default{
             resturants: []
         }
     },
+    //mounted run whenever the page is reloaded
+    async mounted(){
+        let user = localStorage.getItem("user-info")
+        if (!user){
+            this.$router.push({name:'SignUp'})
+        }
+        else{
+            this.name = JSON.parse(user).name
+        }
+        this.loaddata()
+    },
     methods: {
         async deleteResturant(id){
             let result = await axios.delete("http://localhost:3000/resturant/" + id)
@@ -53,17 +74,6 @@ export default{
             let result = await axios.get("http://localhost:3000/resturant");
             this.resturants = result.data
         }
-    },
-    //mounted run whenever the page is reloaded
-    async mounted(){
-        let user = localStorage.getItem("user-info")
-        if (!user){
-            this.$router.push({name:'SignUp'})
-        }
-        else{
-            this.name = JSON.parse(user).name
-        }
-        this.loaddata()
     }
 }
 </script>
