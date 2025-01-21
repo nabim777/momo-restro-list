@@ -51,14 +51,15 @@ export default{
                 return;
             }
 
+            // Determine if the input is an email
+            const isEmail = /\S+@\S+\.\S+/.test(this.email);
+
             // http://localhost:3000/user?email=nabinaale@gmail.com&password=@123
             // this is api for filtering the required username with email and password
             let result = await axios.get(`http://localhost:3000/user`, {
-                    params: {
-                        name: this.name,
-                        email: this.email,
-                        password: this.password
-                    }
+                params: isEmail
+                    ? { email: this.email, password: this.password }
+                    : { name: this.email, password: this.password },
                 });
             console.warn(result)
             if(result.status==200 && result.data.length>0){
