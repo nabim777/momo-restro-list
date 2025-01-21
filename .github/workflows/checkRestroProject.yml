@@ -21,6 +21,10 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: check lint
+        run: |
+          npm run lint
+
       - name: Build and run the project
         run: |
           npm install
