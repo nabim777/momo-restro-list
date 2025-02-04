@@ -6,20 +6,20 @@ const util = require('util');
 const LoginPage = require("../pageObjects/LoginPage.js")
 const loginPage = new LoginPage
 
-Given('the admin has navigated to the login page', async function () {
+Given('user has navigated to the login page', async function () {
   await loginPage.gotoLoginPage()
   await expect(page).toHaveURL(loginPage.loginUrl)
 });
 
-When('admin logs in with username {string} and password {string} using webUI', async function (username, password) {
+When('user logs in with username {string} and password {string} using webUI', async function (username, password) {
   await loginPage.login(username,password)
 });
 
-Then('admin should be redirected to the webUI homepage', async function () {
+Then('user should be redirected to the webUI homepage', async function () {
   await expect(page).toHaveURL(loginPage.homePageUrl)
 });
 
-Then('admin should get {string} message', async function (expectedMessage) {
+Then('user should get {string} message', async function (expectedMessage) {
   const actualMessage = await page.locator(loginPage.messageSelector).textContent()
     assert.equal(
       actualMessage,
