@@ -1,0 +1,47 @@
+name: Run-project
+
+trigger:
+  event:
+    - push
+    - pull_request
+  branch:
+    - master
+
+pipeline:
+  run-Restro-project:
+    image: node:20
+    platform: linux/amd64
+    steps:
+      - name: Checkout repo code
+        commands:
+          - git clone https://github.com/your/repo.git .  
+          
+      - name: Set up node
+        commands:
+          - curl -fsSL https://deb.nodesource.com/setup_20.x | bash - 
+          - apt-get install -y nodejs
+
+      - name: Install NPM dependencies
+        commands:
+          - npm install
+
+      - name: JS lint
+        commands:
+          - npm run lint || (echo "Linting failed! Please run 'npm run lint:fix' to fix the errors." && exit 1)
+
+      - name: Build and run the project
+        commands:
+          - npm run serve &
+          - npm install -g json-server
+          - json-server db.json &
+
+      - name: Wait for services
+        commands:
+          - apt-get install -y wait-for-it
+          - wait-for-it -h localhost -p 8080 -t 10
+          - wait-for-it -h localhost -p 3000 -t 10
+
+      - name: Run web-ui tests
+        commands:
+          - npx playwright install
+          - npm run test:e2e tests
