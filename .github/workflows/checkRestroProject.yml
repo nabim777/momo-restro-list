@@ -22,7 +22,7 @@ jobs:
           node-version: 20.x
       
       - name: Install NPM Dependencies
-        run: npm install
+        run: npm ci
 
       - name: JS lint
         run: |
@@ -42,5 +42,4 @@ jobs:
 
       - name: run web-ui tests
         run: |
-          npx playwright install
           npm run test:e2e tests
