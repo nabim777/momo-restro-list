@@ -1,3 +1,5 @@
+# 🥟 restro-project 🍜
+
 ## Github Action Badge
 [![Run-project](https://github.com/nabim777/momo-restro-list/actions/workflows/checkRestroProject.yml/badge.svg)](https://github.com/nabim777/momo-restro-list/actions/workflows/checkRestroProject.yml)
 
@@ -6,34 +8,31 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nabim777_practice_vue&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=nabim777_practice_vue)
 -->
 
-## CLA Assistant
+## 📜 CLA Assistant
 [![CLA assistant](https://cla-assistant.io/readme/badge/nabim777/practice_vue)](https://cla-assistant.io/nabim777/practice_vue)
 
 
-# restro-project
-
-## Project setup
+## 📦 Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 🚀 Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### for backend here uses json-server for API
+### 🔧 for backend here uses json-server for API
 ```
-npm install -g json-server
-json-server db.json
+npm run backend
 ```
 
-### Compiles and minifies for production
+### 🏗️ Compiles and minifies for production
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### 🧰 Lints and fixes files
 ```
 npm run lint
 ```
@@ -42,10 +41,10 @@ npm run lint
 npm run lint:fix
 ```
 
-### Run e2e test
+### 🧪 Run e2e test
 ```
 npm run test:e2e tests
 ```
 
-### Customize configuration
+### ⚙️ Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
