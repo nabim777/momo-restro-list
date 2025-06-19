@@ -14,7 +14,7 @@
 
 ## 📦 Project setup
 ```
-npm install
+npm install hai ta
 ```
 
 ### 🚀 Compiles and hot-reloads for development
