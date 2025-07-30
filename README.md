@@ -22,6 +22,9 @@ npm install
 npm run serve
 ```
 
+as
+asas
+
 ### 🔧 for backend here uses json-server for API
 ```
 npm run backend
