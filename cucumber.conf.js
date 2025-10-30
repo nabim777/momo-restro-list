@@ -28,7 +28,10 @@ Before(async function () {
 // Cleanup after each scenario
 After(async function (scenario) {
   if (scenario.result.status === 'FAILED') {
-    await global.context.tracing.stop({ path: `trace-${Date.now()}.zip` });
+    await global.context.tracing.stop({ path: `trace-results/trace-${Date.now()}.zip` });
+    // console.log('\x1b[31m--------------------Failed Scenario--------------------');
+    // console.log(`"${scenario.pickle.name}"`);
+    // console.log('-----------------------------------------------------\x1b[0m');
   }
   await global.page.close();
   await global.context.close();

@@ -40,6 +40,25 @@ jobs:
           wait-for-it -h localhost -p 3000 -t 10
 
       - name: run web-ui tests
+        id: test-webui
         run: |
-          npx playwright install
+          npx playwright install chromium
           npm run test:e2e tests
+
+      - name: upload trace results
+        if: ${{ failure() && steps.test-webui.conclusion == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          path: |
+            trace-results/*.zip
+
+      - name: Log tracing result
+        if: ${{ failure() && steps.test-webui.conclusion == 'failure' }}
+        run: |
+          echo "Some tests have failed. Please check the traces for more details."
+          # for file in trace-results/*.zip; do
+          ls
+          echo "-------------------------------------------------------"
+          for file in output/test/trace-results/*.zip; do
+            echo "Trace file: $file"
+          done
