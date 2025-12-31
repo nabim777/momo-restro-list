@@ -55,10 +55,15 @@ jobs:
       - name: Log tracing result
         if: ${{ failure() && steps.test-webui.conclusion == 'failure' }}
         run: |
-          echo "Some tests have failed. Please check the traces for more details."
-          # for file in trace-results/*.zip; do
-          ls
+          echo "::error::Some UI tests failed. Trace files have been generated."
+          echo "You can download the 'Artifacts' from this run to view the traces."
           echo "-------------------------------------------------------"
-          for file in output/test/trace-results/*.zip; do
-            echo "Trace file: $file"
-          done
+          echo "Found trace files:"
+          if ls trace-results/*.zip 1> /dev/null 2>&1; then
+            for file in trace-results/*.zip; do
+              echo "- $file"
+              Download link for $file: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts?query=$file
+            done
+          else
+            echo "No trace files found in trace-results/ directory."
+          fi
