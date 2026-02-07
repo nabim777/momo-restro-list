@@ -6,7 +6,7 @@ Feature: Login
 
   Scenario: user logs in with a valid username and valid password
     Given user has navigated to the login page
-    When user logs in with username "max" and password "maxss" using webUI
+    When user logs in with username "max" and password "max" using webUI
     Then user should be redirected to the webUI homepage
 
 
