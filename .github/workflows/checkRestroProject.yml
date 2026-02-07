@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repo code
         uses: actions/checkout@v3
 
-      - name: set up node
+      - name: Set up node
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
@@ -33,13 +33,22 @@ jobs:
           npm run serve &
           npm run backend &
 
-      - name: wait for services
+      - name: Wait for services
         run: |
           sudo apt-get install wait-for-it -y
           wait-for-it -h localhost -p 8080 -t 10
           wait-for-it -h localhost -p 3000 -t 10
 
-      - name: run web-ui tests
+      - name: Run web-ui tests
+        id: test-webui
         run: |
-          npx playwright install
+          npx playwright install chromium
           npm run test:e2e tests
+
+      - name: Upload trace results
+        if: ${{ failure() && steps.test-webui.conclusion == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          path: |
+            trace-results/*.zip
+            retention-days: 30
