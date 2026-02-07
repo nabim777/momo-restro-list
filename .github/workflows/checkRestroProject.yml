@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repo code
         uses: actions/checkout@v3
 
-      - name: set up node
+      - name: Set up node
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
@@ -33,37 +33,22 @@ jobs:
           npm run serve &
           npm run backend &
 
-      - name: wait for services
+      - name: Wait for services
         run: |
           sudo apt-get install wait-for-it -y
           wait-for-it -h localhost -p 8080 -t 10
           wait-for-it -h localhost -p 3000 -t 10
 
-      - name: run web-ui tests
+      - name: Run web-ui tests
         id: test-webui
         run: |
           npx playwright install chromium
           npm run test:e2e tests
 
-      - name: upload trace results
+      - name: Upload trace results
         if: ${{ failure() && steps.test-webui.conclusion == 'failure' }}
         uses: actions/upload-artifact@v4
         with:
           path: |
             trace-results/*.zip
-
-      - name: Log tracing result
-        if: ${{ failure() && steps.test-webui.conclusion == 'failure' }}
-        run: |
-          echo "::error::Some UI tests failed. Trace files have been generated."
-          echo "You can download the 'Artifacts' from this run to view the traces."
-          echo "-------------------------------------------------------"
-          echo "Found trace files:"
-          if ls trace-results/*.zip 1> /dev/null 2>&1; then
-            for file in trace-results/*.zip; do
-              echo "- $file"
-              Download link for $file: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts?query=$file
-            done
-          else
-            echo "No trace files found in trace-results/ directory."
-          fi
+            retention-days: 30
