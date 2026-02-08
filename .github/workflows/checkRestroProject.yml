@@ -43,8 +43,7 @@ jobs:
 
       - name: Run ui tests
         id: test-ui
-        run: |
-          npm run test:e2e tests
+        run: npm run test:e2e tests
 
       - name: Upload trace results
         if: ${{ failure() && steps.test-ui.conclusion == 'failure' }}
