@@ -1,3 +1,30 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarcloud1:
+    name: SonarCloud Bot 1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: SonarCloud Scan - Bot 1
+        uses: sonarsource/sonarqube-scan-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: ./
+
+
 # on:
 #   # Trigger analysis when pushing in master or pull requests, and when creating
 #   # a pull request.
@@ -8,7 +35,7 @@
 #       types: [opened, synchronize, reopened]
 # name: Main Workflow
 # jobs:
-#   sonarcloud:
+#   sonarcloud1:
 #     runs-on: ubuntu-latest
 #     steps:
 #     - uses: actions/checkout@v3
@@ -16,7 +43,48 @@
 #         # Disabling shallow clone is recommended for improving relevancy of reporting
 #         fetch-depth: 0
 #     - name: SonarCloud Scan
-#       uses: sonarsource/sonarcloud-github-action@master
+#       uses: sonarsource/sonarqube-scan-action@v4
 #       env:
 #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+#   sonarcloud2:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v3
+#       with:
+#         # Disabling shallow clone is recommended for improving relevancy of reporting
+#         fetch-depth: 0
+#     - name: SonarCloud Scan
+#       uses: sonarsource/sonarqube-scan-action@v4
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  # sonarqubeScan1:
+  #   name: SonarQubeScan1
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0  
+  #     - name: SonarQube Scan
+  #       uses: SonarSource/sonarqube-scan-action@v4
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #       with:
+  #         projectBaseDir: repo1/
+          
+  # sonarqubeScan2:
+  #   name: SonarQubeScan2
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0  
+  #     - name: SonarQube Scan
+  #       uses: SonarSource/sonarqube-scan-action@v4
+  #       env: 
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #       with:
+  #         projectBaseDir: repo2/
