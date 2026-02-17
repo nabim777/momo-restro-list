@@ -1,4 +1,4 @@
-# 🥟 Restro-project 🍜
+# 🥟 Momo-restro-list 🍜
 
 ## Github Action Badge
 [![Run-project](https://github.com/nabim777/momo-restro-list/actions/workflows/checkRestroProject.yml/badge.svg)](https://github.com/nabim777/momo-restro-list/actions/workflows/checkRestroProject.yml)
