@@ -1,4 +1,4 @@
-# 🥟 restro-project 🍜
+# 🥟 Restro-project 🍜
 
 ## Github Action Badge
 [![Run-project](https://github.com/nabim777/momo-restro-list/actions/workflows/checkRestroProject.yml/badge.svg)](https://github.com/nabim777/momo-restro-list/actions/workflows/checkRestroProject.yml)
@@ -14,7 +14,7 @@
 
 ## 📦 Project setup
 ```
-npm install
+npm ci
 ```
 
 ### 🚀 Compiles and hot-reloads for development
@@ -32,7 +32,13 @@ npm run backend
 npm run build
 ```
 
-### 🧰 Lints and fixes files
+## 🧪 Run e2e test
+```
+npx playwright install chromium
+npm run test:e2e tests
+```
+
+## 🧰 Lints and fixes files
 ```
 npm run lint
 ```
@@ -41,10 +47,6 @@ npm run lint
 npm run lint:fix
 ```
 
-### 🧪 Run e2e test
-```
-npm run test:e2e tests
-```
 
-### ⚙️ Customize configuration
+## ⚙️ Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
