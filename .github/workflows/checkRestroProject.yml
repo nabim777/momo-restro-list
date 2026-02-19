@@ -1,4 +1,4 @@
-name: Run-project
+name: CI
 
 on:
   push:
@@ -41,7 +41,7 @@ jobs:
           wait-for-it -h localhost -p 8080 -t 10
           wait-for-it -h localhost -p 3000 -t 10
 
-      - name: Run ui tests
+      - name: Run UI Tests
         id: test-ui
         run: npm run test:e2e tests
 
