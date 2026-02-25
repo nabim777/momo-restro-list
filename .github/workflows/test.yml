@@ -1,0 +1,32 @@
+name: Upload ZIP to Transfer.sh
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ⬇️ If hello.zip already exists in repo, delete this step
+      - name: Create example ZIP
+        run: |
+          echo "Hello world!" > hello.txt
+          zip hello.zip hello.txt
+
+      - name: Upload to transfer.sh
+        id: upload
+        run: |
+          URL=$(curl --upload-file ./hello.zip https://transfer.sh/hello.zip)
+          echo "UPLOAD_URL=$URL" >> $GITHUB_ENV
+          echo "Uploaded file URL: $URL"
+          echo "Download link: $UPLOAD_URL"
