@@ -52,3 +52,12 @@ jobs:
           path: |
             trace-results/*.zip
             retention-days: 30
+      
+      - name: OWASP Noir Action
+        id: noir
+        uses: owasp-noir/noir@v1.1.0
+        with:
+          base_path: '.'
+
+      - name: Display results
+        run: echo '${{ steps.noir.outputs.endpoints }}' | jq .
