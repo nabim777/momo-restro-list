@@ -12,16 +12,34 @@
         type="text"
         placeholder="Enter Name"
       >
+      <p
+        v-if="nameError"
+        class="error-message"
+      >
+        {{ nameError }}
+      </p>
       <input
         v-model="email"
         type="text"
         placeholder="Enter Email"
       >
+      <p
+        v-if="emailError"
+        class="error-message"
+      >
+        {{ emailError }}
+      </p>
       <input
         v-model="password"
         type="password"
         placeholder="Password"
       >
+      <p
+        v-if="passwordError"
+        class="error-message"
+      >
+        {{ passwordError }}
+      </p>
       <button @click="signUp">
         Sign up
       </button>
@@ -44,7 +62,10 @@ export default{
         return {
             name: '',
             email: '',
-            password: ''
+            password: '',
+            nameError: '',
+            emailError: '',
+            passwordError: ''
         }
     },
     //mounted will load whenever page is loaded
@@ -57,8 +78,32 @@ export default{
         }
     },
     methods:{
+        validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        },
         async signUp()
         {
+            // clear previous error messages
+            this.nameError = '';
+            this.emailError = '';
+            this.passwordError = '';
+            if (this.name === '') {
+                this.nameError = 'Name is required.';
+            }
+            if (this.email === '') {
+                this.emailError = 'Email is required.';
+            } else if (!this.validateEmail(this.email)) {
+                this.emailError = 'Invalid email format.';
+            }
+            if (this.password === '') {
+                this.passwordError = 'Password is required.';
+            }
+
+            // stop execution if there are any errors
+            if (this.nameError || this.emailError || this.passwordError) {
+                return;
+            }
             console.warn("signUp",this.name,this.email,this.password)
             let result= await axios.post("http://localhost:3000/user",
             {
