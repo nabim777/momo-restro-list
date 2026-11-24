@@ -32,8 +32,7 @@ jobs:
 
       - name: Run the project
         run: |
-          npm run serve &
-          npm run backend &
+          npm run dev &
 
       - name: Wait for services
         run: |
