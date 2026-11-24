@@ -13,37 +13,27 @@
 
 
 ## 📦 Project setup
-```
-npm ci
-```
-
-### 🚀 Compiles and hot-reloads for development
-```
-npm run serve
+```bash
+npm install
 ```
 
-### 🔧 for backend here uses json-server for API
-```
-npm run backend
-```
-
-### 🏗️ Compiles and minifies for production
-```
-npm run build
+🚀 Compiles and hot-reloads for development
+```bash
+npm run dev
 ```
 
 ## 🧪 Run e2e test
-```
+```bash
 npx playwright install chromium
 npm run test:e2e tests
 ```
 
 ## 🧰 Lints and fixes files
-```
+```bash
 npm run lint
 ```
 
-```
+```bash
 npm run lint:fix
 ```
 
