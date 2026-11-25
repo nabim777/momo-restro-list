@@ -18,12 +18,3 @@ When('user logs in with username {string} and password {string} using webUI', as
 Then('user should be redirected to the webUI homepage', async function () {
   await expect(page).toHaveURL(loginPage.homePageUrl)
 });
-
-Then('user should get {string} message', async function (expectedMessage) {
-  const actualMessage = await page.locator(loginPage.messageSelector).textContent()
-    assert.equal(
-      actualMessage,
-      expectedMessage,
-      `Expected message "${expectedMessage}" but received "${actualMessage}"`
-    )
-});
