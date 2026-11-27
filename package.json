@@ -7,8 +7,8 @@
     "build": "vue-cli-service build",
     "backend": "json-server db.json",
     "dev": "concurrently \"vue-cli-service serve\" \"json-server db.json\"",
-    "lint": "eslint --ext .js,.vue src/",
-    "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test:e2e": "cucumber-js --require cucumber.conf.js --require tests/acceptance/stepDefinitions/**/*.js --format @cucumber/pretty-formatter"
   },
   "dependencies": {
@@ -22,14 +22,15 @@
     "@babel/eslint-parser": "^7.12.16",
     "@cucumber/cucumber": "^7.3.1",
     "@cucumber/pretty-formatter": "^1.0.0-alpha.1",
+    "@eslint-react/eslint-plugin": "^5.30.6",
     "@playwright/test": "^1.18.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "concurrently": "^10.0.7",
-    "eslint": "^8.57.1",
-    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint": "^9.39.5",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-vue": "^9.32.0",
+    "globals": "^17.14.0",
     "json-server": "^0.17.4",
     "playwright": "^1.18.1"
   },

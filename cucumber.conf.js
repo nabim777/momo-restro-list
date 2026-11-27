@@ -2,6 +2,7 @@
 
 const { Before, BeforeAll, AfterAll, After, setDefaultTimeout } = require("@cucumber/cucumber");
 const { chromium } = require("playwright");
+require("./tests/acceptance/support/world.js");
 
 setDefaultTimeout(60000)
 
@@ -23,6 +24,9 @@ Before(async function () {
   global.context = await global.browser.newContext();
   await global.context.tracing.start({ screenshots: true, snapshots: true });
   global.page = await global.context.newPage();
+
+  // await global.page.addInitScript(() => localStorage.clear());
+  this.init(global.page);
 });
 
 // Cleanup after each scenario
