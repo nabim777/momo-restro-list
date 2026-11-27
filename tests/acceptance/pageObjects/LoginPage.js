@@ -1,5 +1,6 @@
 class LoginPage {
-    constructor() {
+    constructor(page) {
+        this.page = page
         //define selectors
         this.usernameSelector = '#email'
         this.passwordSelector = '#password'
@@ -13,13 +14,13 @@ class LoginPage {
     }
 
     async gotoLoginPage() {
-        await page.goto(this.loginUrl)
+        await this.page.goto(this.loginUrl)
     }
 
     async login(username, password) {
-        await page.fill(this.usernameSelector, username)
-        await page.fill(this.passwordSelector, password)
-        await page.click(this.loginButtonSelector)
+        await this.page.fill(this.usernameSelector, username)
+        await this.page.fill(this.passwordSelector, password)
+        await this.page.click(this.loginButtonSelector)
     }
 
 }
