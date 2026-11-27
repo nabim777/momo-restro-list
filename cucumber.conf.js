@@ -24,8 +24,6 @@ Before(async function () {
   global.context = await global.browser.newContext();
   await global.context.tracing.start({ screenshots: true, snapshots: true });
   global.page = await global.context.newPage();
-
-  // await global.page.addInitScript(() => localStorage.clear());
   this.init(global.page);
 });
 
